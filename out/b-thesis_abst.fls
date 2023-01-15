@@ -90,11 +90,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmmib5.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmbsy10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm
-INPUT ./fig/convsys.png
-INPUT extractbb -B cropbox -O ./fig/convsys.png
-OUTPUT out/b-thesis_abst.dvi
 INPUT ./fig/system2.png
 INPUT extractbb -B cropbox -O ./fig/system2.png
+OUTPUT out/b-thesis_abst.dvi
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/ptex-fonts/standard/min8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr8.tfm

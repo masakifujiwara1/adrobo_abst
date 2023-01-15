@@ -24,7 +24,7 @@
     
     \makeatother
     
-    \abstract{When preparing the manuscript, read and observe carefully this sample as well as the instruction manual for the manuscript of the Transaction of Japan Society of Mechanical Engineers. This sample was prepared using MS-word. Character size of the English title is 14 pts of Times New Roman as well as sub-title. The name is 12 pts. The address of the first author and the abstract is 10 pts of Times New Roman. Character spacing of the abstract is narrowed by 0.2 pts preferably.}
+    \abstract{An end-to-end learning approach leveraging camera images has been explored as a novel option for robotic navigation. To enable the robot to control the trajectory it takes at junction points, we introduce a path selection function. To this end, we propose a method to incorporate a target direction into the dataset of the preceding technique. The suggested procedure is subdivided into two stages: a learning stage and an evaluation stage. The efficacy of the proposed technique was validated in both a simulated and a real environment. Moreover, we addressed the issue of learning time.}
     
     \keywords{End-to-end learning, Navigation, Target direction}
     
@@ -33,68 +33,55 @@
     \supervisor{指導教員：林原靖男 教授}
     
     \section{緒\hspace{2zw}言}
-
-    近年, 機械学習を用いた自律走行に関する研究がされている. Bojarski\cite{bojarski}らは, 人間のドライバーが操作するステアリングの角度と前方カメラ画像を用いて模倣学習を行った. 加えて, 訓練したネットワークに画像を入力し, 生成される操舵指令を用いて走行を行う手法を提案した. また, 岡田ら\cite{okada}はLiDAR, オドメトリを入力とした地図を用いたルールベース制御器による経路追従行動を, 前方カメラ画像を用いてend-to-endで模倣学習した. その結果, カメラ画像に基づいてロボットが学習した経路を周回可能であることが確認されている. \\本研究では, 岡田ら\cite{okada}の研究（以下, 「従来手法」と称する）をベースとして, 分岐路において「直進」, 「左折」などのコマンドによる制御で, 任意の経路を選択可能にする機能の追加を提案する. また, シミュレータ上での実験を実環境に移す際に, 問題となった学習時間の長さについて, 2 つのアプローチの提案と検証を行う. さらに, 実環境における提案手法の有効性を検証することを目的とする.
-    % --------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    % \section{記号・単位の書き方}%===========================
-    % \begin{table}[!h]
-    %     \begin{tabular}{lcl}
-    %         $L$ & ： & 長さ [m] \\
-    %         $t$ & ： & 時間 [s] \\
-    %         $x$ & ： & 流れ方向の座標 [m] \\
-    %         $\alpha$ & ： & 熱伝達率 [$\mathrm{W/(m^2\cdot K)}$] \\
-    %         $Re$ & ： & レイノルズ数 \\
-    %         $\bm{R}$ & ： & 回転行列 \\
-    %         $\bm{t}$ & ： & 並進ベクトル \\
-    %     \end{tabular}
-    % \end{table}
     
+    近年, 機械学習を用いた自律走行の研究が進められている. Bojarski\cite{bojarski}らは, 人間が操作するステアリングの角度とカメラ画像を用いて, end-to-endで模倣学習することで自律走行する手法を提案した. さらに, 岡田ら\cite{okada}はLiDAR, オドメトリを入力としたルールベース制御器による経路追従行動を, カメラ画像を用いてend-to-endで模倣学習を行った. その結果, カメラ画像に基づいてロボットが学習した経路を周回可能であることが確認されている. 本研究では, 岡田ら\cite{okada}の研究（以下, 「従来手法」と称する）を元に, 分岐路で「直進」, 「左折」などのコマンドによる制御で, 経路を選択可能にする機能の追加を提案する. また, シミュレータ上での実験を実環境に移す際に, 問題となった学習時間の長さについて, 2 つのアプローチにより解決を図る. さらに, 実環境での提案手法の有効性を検証することを目的とする.
     
-    
-    \section{従来手法}%===========================
-
+    \section{従来手法}
     岡田らの従来手法に関して紹介する. 
     \reffig{sample-fig}に, 経路追従行動を視覚に基づいてオンラインで模倣するシステムを示す. 
-    手法は機械学習により, 学習器の訓練を行う「学習フェーズ」と訓練した結果を検証する「テストフェーズ」に分かれる. 
+    手法は機械学習により, 学習器の訓練を行う「学習フェーズ」と訓練した結果を検証する「テストフェーズ」に分かれる.
+    % \vspace{10pt}
+    % \begin{center}
+    %     \begin{figure}[!b]
+    %         \includegraphics[width=0.45\textwidth]{./fig/system2.png}
+    %         \caption{Imitation learning system}
+    %         \label{fig:sample-fig}
+    %     \end{figure}
+    % \end{center}
+    % \vspace{-0.5cm}
+    \subsection{学習フェーズ}
+    学習フェーズは, 模倣学習によって学習器の訓練を行うフェーズである. LiDARとオドメトリを入力とする地図を用いたルールベース制御器で自律走行する. この経路追従行動を, カメラ画像を用いたend-to-endで模倣学習する.
 
     \begin{center}
-        \begin{figure}[!b]
-            \includegraphics[width=0.45\textwidth]{./fig/convsys.png}
-            \caption{Sample of clear figure}
+        \begin{figure}[h]
+            \includegraphics[width=0.45\textwidth]{./fig/system2.png}
+            \caption{Imitation learning system}
             \label{fig:sample-fig}
         \end{figure}
     \end{center}
 
-    % \newpage
-    
-    \subsection{学習フェーズ}
-    
-    学習フェーズは, 模倣学習によって学習器の訓練を行うフェーズである. LiDARとオドメトリを入力とする地図を用いたルールベース制御器で自律走行する. この経路追従行動を, カメラ画像を用いたend-to-endで模倣学習する.
-
     \subsection{テストフェーズ}
 
     テストフェーズは, 訓練後の学習結果を評価するフェーズである. 学習器にカメラ画像を入力し, 出力されるヨー方向の角速度を用いて自律走行する.
-    % なお, \reffig{sample-fig}の提案手法と記載した部分は, 次章で述べるように, 本研究で追加した機能となる.
+    なお, \reffig{sample-fig}の提案手法と記載した部分は, 次章で述べるように, 本研究で追加した機能となる.
 
     \section{提案手法}
 
-    経路選択機能の追加を目的として, データセットと学習器の入力へ「直進」, 「左折」などの目標方向を追加する. なお, 追加した要素以外は従来手法と同様である. \reffig{propose_sys}に, 提案手法のシステムを示す. 学習フェーズでは, 目標方向の生成機能を追加した地図ベースの制御器を用いる. テストフェーズでは, 学習器の出力を用いた走行において, 目標方向によって任意の経路を選択する.
-    
+    経路選択機能の追加を目的として, データセットと学習器の入力へ「直進」, 「左折」などの目標方向を追加する. なお, 追加した要素以外は従来手法と同様である. \reffig{sample-fig}に, 提案手法のシステムを示す. 
+    % なお, \reffig{sample-fig}では, 従来手法のシステムに追加した部分を提案手法と記載している. 
+    学習フェーズでは, 目標方向の生成機能を追加した地図ベースの制御器を用いる. テストフェーズでは, 学習器の出力を用いた走行において, 目標方向によって任意の経路を選択する. 
 
-    % なお, \reffig{propose_sys}では, 従来手法のシステムに追加した部分を提案手法と記載している. 
+    % \begin{center}
+    %     \begin{figure}[h]
+    %         \includegraphics[width=0.45\textwidth]{./fig/system2.png}
+    %         \caption{Sample of clear figure}
+    %         \label{fig:propose_sys}
+    %     \end{figure}
+    % \end{center}
 
-    \begin{center}
-        \begin{figure}[!b]
-            \includegraphics[width=0.45\textwidth]{./fig/system2.png}
-            \caption{Sample of clear figure}
-            \label{fig:propose_sys}
-        \end{figure}
-    \end{center}
-
-    本研究で用いた目標方向と学習器へ入力するデータ形式を, \reftab{target_direction}に示す. 目標方向を分岐路において「直進（Go straight）」, 「左折（Turn left）」, 「右折（Turn right）」の3コマンドを用いる.
-
-     \begin{table}[t]
-        \caption{Sample of expression of values}
+    本研究で用いた目標方向と学習器へ入力するデータ形式を, \reftab{target_direction}に示す. 目標方向は「直進（Go straight）」, 「左折（Turn left）」, 「右折（Turn right）」の3コマンドを用いる.
+    \begin{table}[h]
+        \caption{Target direction and data}
         \label{tab:target_direction}
         \begin{center}
             \vskip 1zh
@@ -107,11 +94,64 @@
             \end{tabular}
         \end{center}
     \end{table}
-
+    \vspace{-10pt}
     \section{実験}
+    シミュレータ上での実験を実環境に移す際に問題となった学習時間の長さについて2つのアプローチを行い, 実験で有効性を確認する. また, 実環境での実験により, 提案手法の有効性を検証する.
+
+    \subsection{実験内容}
+    % 本稿では, 以下の2つの実験を行う.
+
+    % \begin{enumerate}
+    %     \item 2つのアプローチを行った実験
+    % \end{enumerate}
     
+    \begin{description}
+        \item[実験1：2つのアプローチを行った実験]\mbox{}\\
+        実験1では, 学習フェーズで予め決めた経路を繰り返し走行させる. その際に, コマンドのデータの偏りを減らすアプローチ1と, 蛇行走行するように制御指令を意図的に大きくするアプローチ2を行う. テストフェーズでは, 学習フェーズと同様の経路を, 目標方向による制御によって, 走行できるか評価を10回行う.
+        \vspace{-10pt}
+        \item[実験2：実環境での実験]\mbox{}\\
+        実環境で実験1に倣って実験を行う.  
+    \end{description}
+
+    \subsection{実験装置}
+
+    \begin{description}
+        \item[実験1（シミュレータ）]\mbox{}\\
+        ロボットは, \reffig{sample-fig}で示したような, Turtlebot3 waffle\_piへ3つのカメラを追加したモデルを用いる. また, シミュレータ上で千葉工業大学津田沼キャンパス2号館3階を模した環境を対象に実験を行う.
+        \vspace{-10pt}
+        \item[実験2（実環境）]\mbox{}\\
+        % ロボットは, figに示すように, 3つのカメラを搭載したロボットを用いる. 
+        実験は千葉工業大学津田沼キャンパス2号館3階で行った.
+    \end{description}
+
+    \subsection{実験結果}    
+    各実験において, テストフェーズで正しい経路を選択できた成功率を\reftab{result}に示す. 
     
+    実験1に関しては, 両方とも10000stepでアプローチを行わない場合と比べると, 成功率が向上している. また, 60000stepと20000stepで比べると, 成功率が悪化せずに学習step数を減らしている. 
     
+    実験2に関しては, 成功率は65\%となり, シミュレータ上での実験結果より低くなった. 成功率が低い原因の解明には未だ至っていない. この問題の検討は, 今後の課題となっている. しかし, 経路選択前に同じ場所を走行し, ほぼ同様の画像が入力されている状態で, 目標方向に従って正しい経路を選択している様子を確認することができた.
+    % このことから, 実環境においても提案手法により, 経路選択ができている可能性が高い.
+
+    \begin{table}[h]
+        \caption{Experimental results}
+        \label{tab:result}
+        \begin{center}
+            \vskip 1zh
+            \begin{tabular}{|c|c|c|}
+                \hline
+                Experimets & step & Success rate \\ \hline
+                1 without approach & 60000 & 94.2\%\\ \hline
+                1 without approach & 10000 & 72.5\%\\ \hline
+                1 & 10000 & 90.8\%\\ \hline
+                1 & 20000 & 95\%\\ \hline
+                2 & 20000 & 65\%\\ \hline
+                % Trun right & [0, 0, 100] \\ \hline
+            \end{tabular}
+        \end{center}
+    \end{table}
+
+    % \textbf{実験1}
+
     % \section{図及び写真・表の作成に関して}%===========================
     % \begin{enumerate}
     %     \setlength{\parskip}{0cm} % 段落間
@@ -176,13 +216,15 @@
     
     % 引用文献は，英文で記述されているもの（文献\cite{Shibutani2004}など）は英文で書き，本文末尾に引用順にまとめて書く．専門的な書籍（文献\cite{Handbook1979}など）についても引用しても良い．
     % Web上の資料を引用する場合，例えばオンラインジャーナルなどの場合は文献\cite{Kikuchi2017}のように，webページの場合は文献\cite{Adrobo2019}のように，それぞれ参考文献として記載して引用する．この時，URLとともに参照日を記載すること．ただし，webページの場合は個人の技術ブログなどのように第3者による十分な審査が行われていないものの引用は行ってはいけない．公的な機関が発行しているページであっても，その永続性の問題から必要最小限に留めることを推奨する．
+    % \vspace{-10pt}
         
     \section{結\hspace{2zw}言}%===========================
     
-    本研究では, 経路追従行動をカメラ画像を用いた end-to-end 学習で模倣する岡田らの従来
-    手法をベースに, データセットと学習器の入力へ目標方向を加えることで, 経路選択をする機
-    能の追加を提案した. また, シミュレータ上での実験を実環境に移す際に, 問題となった学習時
-    間の長さについて, 2 つのアプローチを試みることで学習時間を大幅に削減した. 加えて, 実環
+    % 本研究では, 経路追従行動をカメラ画像を用いた end-to-end 学習で模倣する岡田らの従来
+    % 手法をベースに, データセットと学習器の入力へ目標方向を加えることで, 経路選択をする機
+    % 能の追加を提案した. また, 
+    シミュレータ上での実験を実環境に移す際に, 問題となった学習時
+    間の長さについて, 2 つのアプローチを行うことで学習時間を大幅に削減した. 加えて, 実環
     境での実験を行い, 有効性の検証を行った. 実験結果より, 学習器へ目標方向を与えることで,
     指定した経路へ走行する挙動が確認できた.
     

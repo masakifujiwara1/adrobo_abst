@@ -1,11 +1,11 @@
 # Fdb version 3
-["dvipdf"] 1673704191 "out/b-thesis_abst.dvi" "out/b-thesis_abst.pdf" "out/b-thesis_abst" 1673704192
-  "out/b-thesis_abst.dvi" 1673704191 9520 4c2f642b41e5818a5bbbcfba35e71e06 "latex"
+["dvipdf"] 1673817817 "out/b-thesis_abst.dvi" "out/b-thesis_abst.pdf" "out/b-thesis_abst" 1673817817
+  "out/b-thesis_abst.dvi" 1673817817 13236 3c8fbacde26acc9f801bda296d54062c "latex"
   (generated)
   "out/b-thesis_abst.pdf"
-["latex"] 1673704191 "/home/fmasa/adrobo_abst/b-thesis_abst.tex" "out/b-thesis_abst.dvi" "b-thesis_abst" 1673704192
+["latex"] 1673817816 "/home/fmasa/adrobo_abst/b-thesis_abst.tex" "out/b-thesis_abst.dvi" "b-thesis_abst" 1673817817
   "/etc/texmf/web2c/texmf.cnf" 1669899351 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/fmasa/adrobo_abst/b-thesis_abst.tex" 1673704191 13053 9f468a4d9f8ef4778725d1eadaaa9fde ""
+  "/home/fmasa/adrobo_abst/b-thesis_abst.tex" 1673817816 15992 9cd1dafa06b420070c55c104de7f5943 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/ptex-fonts/standard/goth10.tfm" 1463434352 1196 5981e79c37b2cfd27b3612a6783cd4b6 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/ptex-fonts/standard/min10.tfm" 1463434352 1196 1be730212205a270378fba11a44765dc ""
@@ -64,11 +64,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1581979058 38841 ce3692aa899bb693b90b87eaa5d4d84e ""
   "/var/lib/texmf/web2c/eptex/platex.fmt" 1669899416 10614978 8e113f52ef791f7608f6049f580d5cac ""
   "adrobo_abst.sty" 1604458882 11542 0c09baf7d27c35557cf4bfca588c8fd4 ""
-  "b-thesis_abst.tex" 1673704191 13053 9f468a4d9f8ef4778725d1eadaaa9fde ""
-  "fig/convsys.png" 1673699977 90003 e980b8251ccbf87ecaaf6930697606af ""
+  "b-thesis_abst.tex" 1673817816 15992 9cd1dafa06b420070c55c104de7f5943 ""
   "fig/system2.png" 1673696654 109066 0bb085ce5ae935c667ec9359f2be54d9 ""
-  "out/b-thesis_abst.aux" 1673704191 1416 7d82e919a62b1bf3be76a6cdf426c7eb "latex"
+  "out/b-thesis_abst.aux" 1673817817 1763 058c7c7701b2da83ec391a16e7dfb1fc "latex"
   (generated)
   "out/b-thesis_abst.aux"
-  "out/b-thesis_abst.log"
   "out/b-thesis_abst.dvi"
+  "out/b-thesis_abst.log"
