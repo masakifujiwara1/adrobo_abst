@@ -24,7 +24,10 @@
     
     \makeatother
     
-    \abstract{An end-to-end learning approach leveraging camera images has been explored as a novel option for robotic navigation. To enable the robot to control the trajectory it takes at junction points, we introduce a path selection function. To this end, we propose a method to incorporate a target direction into the dataset of the preceding technique. The suggested procedure is subdivided into two stages: a learning stage and an evaluation stage. The efficacy of the proposed technique was validated in both a simulated and a real environment. Moreover, we addressed the issue of learning time.}
+    \abstract{An end-to-end learning method using camera images has been studied as a new option for robot navigation. In order to enable the robot to control the path it takes at branching paths, we add a path selection function. For this purpose, we propose a method to add a target direction to the dataset of the previous study. 
+    The proposed method can select a path according to the target direction by taking camera images and the target direction as inputs.
+    The method is divided into two phases: a training phase and a testing phase. The effectiveness of the proposed method was verified on a simulator and in a real environment. 
+    }
     
     \keywords{End-to-end learning, Navigation, Target direction}
     
@@ -156,20 +159,20 @@
     \begin{center}
         \begin{figure}[h]
             \centering
-            \includegraphics[width=0.48\textwidth]{./fig/real_result.png}
-            \caption{Total result}
+            \includegraphics[width=0.45\textwidth]{./fig/real_result.png}
+            \caption{Experimental result}
             \label{fig:result1}
         \end{figure}
     \end{center}
     \vspace{-0.9cm}
     \reffig{result2}は, 成功回数が最多のモデルによる実験結果である. この図のb3とe3に向かう三叉路では, 経路選択前は同じ場所を走行しているため, ほぼ同様の画像が入力されているが, 目標方向に従って正しい経路を選択できている. このことから, 実環境で提案手法により, 経路選択を行うことができている可能性が高い. 
-    \vspace{-0.2cm}
+    % \vspace{-0.2cm}
     
     \begin{center}
         \begin{figure}[h]
             \centering
-            \includegraphics[width=0.48\textwidth]{./fig/real_model3.png}
-            \caption{Total result}
+            \includegraphics[width=0.45\textwidth]{./fig/real_model3.png}
+            \caption{Experimental result by model with the highest number of success}
             \label{fig:result2}
         \end{figure}
     \end{center}
