@@ -67,9 +67,9 @@
 
     \section{提案手法}
 
-    経路選択機能の追加を目的として, データセットと学習器の入力へ「直進」, 「左折」などの目標方向を追加する. なお, 追加した要素以外は従来手法と同様である. \reffig{sample-fig}に, 提案手法のシステムを示す. 
+    経路選択機能の追加を目的として, データセットと学習器の入力へ「直進」, 「左折」, 「右折」の目標方向を追加する. なお, 追加した要素以外は従来手法と同様である. \reffig{sample-fig}に, 提案手法のシステムを示す. 
     % なお, \reffig{sample-fig}では, 従来手法のシステムに追加した部分を提案手法と記載している. 
-    学習フェーズでは, 目標方向の生成機能を追加した地図ベースの制御器を用いる. テストフェーズでは, 学習器の出力を用いた走行において, 目標方向によって任意の経路を選択する. 
+    学習フェーズでは, 地図ベースで自律走行しながら, 角速度に加えて目標方向をデータセットに加える. テストフェーズでは, 学習器にカメラ画像に加えて目標方向を入力する.
 
     % \begin{center}
     %     \begin{figure}[h]
@@ -79,22 +79,22 @@
     %     \end{figure}
     % \end{center}
 
-    本研究で用いた目標方向と学習器へ入力するデータ形式を, \reftab{target_direction}に示す. 目標方向は「直進（Go straight）」, 「左折（Turn left）」, 「右折（Turn right）」の3コマンドを用いる.
-    \begin{table}[h]
-        \caption{Target direction and data}
-        \label{tab:target_direction}
-        \begin{center}
-            \vskip 1zh
-            \begin{tabular}{|c|c|}
-                \hline
-                Target direction & Data \\ \hline
-                Go straight & [100, 0, 0] \\ \hline
-                Turn left & [0, 100, 0] \\ \hline
-                Trun right & [0, 0, 100] \\ \hline
-            \end{tabular}
-        \end{center}
-    \end{table}
-    \vspace{-10pt}
+    % 本研究で用いた目標方向と学習器へ入力するデータ形式を, \reftab{target_direction}に示す. 目標方向は「直進（Go straight）」, 「左折（Turn left）」, 「右折（Turn right）」の3コマンドを用いる.
+    % \begin{table}[h]
+    %     \caption{Target direction and data}
+    %     \label{tab:target_direction}
+    %     \begin{center}
+    %         \vskip 1zh
+    %         \begin{tabular}{|c|c|}
+    %             \hline
+    %             Target direction & Data \\ \hline
+    %             Go straight & [100, 0, 0] \\ \hline
+    %             Turn left & [0, 100, 0] \\ \hline
+    %             Trun right & [0, 0, 100] \\ \hline
+    %         \end{tabular}
+    %     \end{center}
+    % \end{table}
+    % \vspace{-10pt}
     \section{実験}
     シミュレータ上での実験を実環境に移す際に問題となった学習時間の長さについて2つのアプローチを行い, 実験で有効性を確認する. また, 実環境での実験により, 提案手法の有効性を検証する.
 
