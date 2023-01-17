@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2022.12.1)  17 JAN 2023 16:34
+This is e-pTeX, Version 3.14159265-p3.8.2-190908-2.6 (utf8.euc) (TeX Live 2019/Debian) (preloaded format=platex 2022.12.1)  18 JAN 2023 07:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -238,18 +238,31 @@ File: ./fig/system2.png Graphic file (type bmp)
 
 
 
-] [2] (out/b-thesis_abst.aux)
+]
+File: ./fig/gamma3.png Graphic file (type bmp)
+<./fig/gamma3.png>
+File: ./fig/tsudanuma2.png Graphic file (type bmp)
+<./fig/tsudanuma2.png>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+File: ./fig/real_result.png Graphic file (type bmp)
+<./fig/real_result.png>
+File: ./fig/real_model3.png Graphic file (type bmp)
+<./fig/real_model3.png>
+[2] (out/b-thesis_abst.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 2393 strings out of 481768
- 29857 string characters out of 5933620
- 275039 words of memory out of 5000000
- 17791 multiletter control sequences out of 15000+600000
+ 2410 strings out of 481768
+ 30205 string characters out of 5933620
+ 273063 words of memory out of 5000000
+ 17804 multiletter control sequences out of 15000+600000
  545030 words of font info for 74 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 30i,7n,31p,841b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 30i,7n,31p,841b,328s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on out/b-thesis_abst.dvi (2 pages, 12320 bytes).
+Output written on out/b-thesis_abst.dvi (2 pages, 11416 bytes).

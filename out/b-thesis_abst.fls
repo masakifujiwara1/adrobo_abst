@@ -93,6 +93,14 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm
 INPUT ./fig/system2.png
 INPUT extractbb -B cropbox -O ./fig/system2.png
 OUTPUT out/b-thesis_abst.dvi
+INPUT ./fig/gamma3.png
+INPUT extractbb -B cropbox -O ./fig/gamma3.png
+INPUT ./fig/tsudanuma2.png
+INPUT extractbb -B cropbox -O ./fig/tsudanuma2.png
+INPUT ./fig/real_result.png
+INPUT extractbb -B cropbox -O ./fig/real_result.png
+INPUT ./fig/real_model3.png
+INPUT extractbb -B cropbox -O ./fig/real_model3.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/ptex-fonts/standard/tmin8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/ptex-fonts/standard/min8.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr8.tfm

@@ -54,6 +54,7 @@
 
     \begin{center}
         \begin{figure}[h]
+            \centering
             \includegraphics[width=0.45\textwidth]{./fig/system2.png}
             \caption{Imitation learning system}
             \label{fig:sample-fig}
@@ -96,59 +97,109 @@
     % \end{table}
     % \vspace{-10pt}
     \section{実験}
-    シミュレータ上での実験を実環境に移す際に問題となった学習時間の長さについて2つのアプローチを行い, 実験で有効性を確認する. また, 実環境での実験により, 提案手法の有効性を検証する.
+    % シミュレータ上での実験を実環境に移す際に問題となった学習時間の長さについて2つのアプローチを行い, 実験で有効性を確認する. また, 実環境での実験により, 提案手法の有効性を検証する.
+    提案手法の有効性を検証するため, 実環境での実験を行う. 
 
-    \subsection{実験内容}
+    \subsection{実験装置}
+    ロボットは, \reffig{gamma}に示すような3つのカメラを搭載したロボットを用いる. また, 実験は千葉工業大学津田沼キャンパス2号館3階で行った.
+    % \vspace{-0.6cm}
+    \begin{center}
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.30\textwidth]{./fig/gamma3.png}
+            \caption{Experimental setup}
+            \label{fig:gamma}
+        \end{figure}
+    \end{center}
+    \vspace{-1.0cm}
+
+    \subsection{実験方法}
+    シミュレータ上で,まずは学習を10000step行い, その学習器を実環境でファインチューニングする. 学習フェーズでは, \reffig{tsudanuma}に示すようなA,Bの三叉路を全ての侵入方向と抜け出す経路を含めるように, 予め決めた経路を繰り返し走行させる. 学習を10000step実行後, テストフェーズに移行する. テストフェーズでは, 学習フェーズと同様の経路を, 目標方向による制御によって, 正しく走行できるか評価する. この一連の流れを10回行う.
+    \begin{center}
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.35\textwidth]{./fig/tsudanuma2.png}
+            \caption{Experimental environment}
+            \label{fig:tsudanuma}
+        \end{figure}
+    \end{center}
+
+
     % 本稿では, 以下の2つの実験を行う.
 
     % \begin{enumerate}
     %     \item 2つのアプローチを行った実験
     % \end{enumerate}
     
-    \begin{description}
-        \item[実験1：2つのアプローチを行った実験]\mbox{}\\
-        実験1では, 学習フェーズで予め決めた経路を繰り返し走行させる. その際に, コマンドのデータの偏りを減らすアプローチ1と, 蛇行走行するように制御指令を意図的に大きくするアプローチ2を行う. テストフェーズでは, 学習フェーズと同様の経路を, 目標方向による制御によって, 走行できるか評価を10回行う.
-        \vspace{-10pt}
-        \item[実験2：実環境での実験]\mbox{}\\
-        実環境で実験1に倣って実験を行う.  
-    \end{description}
+    % \begin{description}
+    %     \item[実験1：2つのアプローチを行った実験]\mbox{}\\
+    %     実験1では, 学習フェーズで予め決めた経路を繰り返し走行させる. その際に, コマンドのデータの偏りを減らすアプローチ1と, 蛇行走行するように制御指令を意図的に大きくするアプローチ2を行う. テストフェーズでは, 学習フェーズと同様の経路を, 目標方向による制御によって, 走行できるか評価を10回行う.
+    %     \vspace{-10pt}
+    %     \item[実験2：実環境での実験]\mbox{}\\
+    %     実環境で実験1に倣って実験を行う.  
+    % \end{description}
 
-    \subsection{実験装置}
+    % \subsection{実験装置}
 
-    \begin{description}
-        \item[実験1（シミュレータ）]\mbox{}\\
-        ロボットは, \reffig{sample-fig}で示したような, Turtlebot3 waffle\_piへ3つのカメラを追加したモデルを用いる. また, シミュレータ上で千葉工業大学津田沼キャンパス2号館3階を模した環境を対象に実験を行う.
-        \vspace{-10pt}
-        \item[実験2（実環境）]\mbox{}\\
-        % ロボットは, figに示すように, 3つのカメラを搭載したロボットを用いる. 
-        実験は千葉工業大学津田沼キャンパス2号館3階で行った.
-    \end{description}
+    % \begin{description}
+    %     \item[実験1（シミュレータ）]\mbox{}\\
+    %     ロボットは, \reffig{sample-fig}で示したような, Turtlebot3 waffle\_piへ3つのカメラを追加したモデルを用いる. また, シミュレータ上で千葉工業大学津田沼キャンパス2号館3階を模した環境を対象に実験を行う.
+    %     \vspace{-10pt}
+    %     \item[実験2（実環境）]\mbox{}\\
+    %     % ロボットは, figに示すように, 3つのカメラを搭載したロボットを用いる. 
+    %     実験は千葉工業大学津田沼キャンパス2号館3階で行った.
+    % \end{description}
+    \vspace{-1.0cm}
 
-    \subsection{実験結果}    
-    各実験において, テストフェーズで正しい経路を選択できた成功率を\reftab{result}に示す. 
+    \subsection{実験結果}   
+    実験結果を\reffig{result1}に示す. この図は, それぞれの侵入方向に対して正しい経路を選択し, 走行できた回数を表している. 合計すると, 目標方向に従って78/120回(65\%)正しい経路を選択する様子が見られた. しかし, 成功率はシミュレータ上では90\%を超えていたことを考えると, 実環境は65\%と低かった. なお, 成功率が低い原因の解明には未だ至っていない. この問題の検討は, 今後の課題となっている.
+    \begin{center}
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.48\textwidth]{./fig/real_result.png}
+            \caption{Total result}
+            \label{fig:result1}
+        \end{figure}
+    \end{center}
+    \vspace{-0.9cm}
+    \reffig{result2}は, 成功回数が最多のモデルによる実験結果である. この図のb3とe3に向かう三叉路では, 経路選択前は同じ場所を走行しているため, ほぼ同様の画像が入力されているが, 目標方向に従って正しい経路を選択できている. このことから, 実環境で提案手法により, 経路選択を行うことができている可能性が高い. 
+    \vspace{-0.2cm}
     
-    実験1に関しては, 両方とも10000stepでアプローチを行わない場合と比べると, 成功率が向上している. また, 60000stepと20000stepで比べると, 成功率が悪化せずに学習step数を減らしている. 
+    \begin{center}
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.48\textwidth]{./fig/real_model3.png}
+            \caption{Total result}
+            \label{fig:result2}
+        \end{figure}
+    \end{center}
+
+    \vspace{-1.0cm}
+
+    % 各実験において, テストフェーズで正しい経路を選択できた成功率を\reftab{result}に示す. 
     
-    実験2に関しては, 成功率は65\%となり, シミュレータ上での実験結果より低くなった. 成功率が低い原因の解明には未だ至っていない. この問題の検討は, 今後の課題となっている. しかし, 経路選択前に同じ場所を走行し, ほぼ同様の画像が入力されている状態で, 目標方向に従って正しい経路を選択している様子を確認することができた.
+    % 実験1に関しては, 両方とも10000stepでアプローチを行わない場合と比べると, 成功率が向上している. また, 60000stepと20000stepで比べると, 成功率が悪化せずに学習step数を減らしている. 
+    
+    % 実験2に関しては, 成功率は65\%となり, シミュレータ上での実験結果より低くなった. 成功率が低い原因の解明には未だ至っていない. この問題の検討は, 今後の課題となっている. しかし, 経路選択前に同じ場所を走行し, ほぼ同様の画像が入力されている状態で, 目標方向に従って正しい経路を選択している様子を確認することができた.
     % このことから, 実環境においても提案手法により, 経路選択ができている可能性が高い.
 
-    \begin{table}[h]
-        \caption{Experimental results}
-        \label{tab:result}
-        \begin{center}
-            \vskip 1zh
-            \begin{tabular}{|c|c|c|}
-                \hline
-                Experimets & step & Success rate \\ \hline
-                1 without approach & 60000 & 94.2\%\\ \hline
-                1 without approach & 10000 & 72.5\%\\ \hline
-                1 & 10000 & 90.8\%\\ \hline
-                1 & 20000 & 95\%\\ \hline
-                2 & 20000 & 65\%\\ \hline
-                % Trun right & [0, 0, 100] \\ \hline
-            \end{tabular}
-        \end{center}
-    \end{table}
+    % \begin{table}[h]
+    %     \caption{Experimental results}
+    %     \label{tab:result}
+    %     \begin{center}
+    %         \vskip 1zh
+    %         \begin{tabular}{|c|c|c|}
+    %             \hline
+    %             Experimets & step & Success rate \\ \hline
+    %             1 without approach & 60000 & 94.2\%\\ \hline
+    %             1 without approach & 10000 & 72.5\%\\ \hline
+    %             1 & 10000 & 90.8\%\\ \hline
+    %             1 & 20000 & 95\%\\ \hline
+    %             2 & 20000 & 65\%\\ \hline
+    %             % Trun right & [0, 0, 100] \\ \hline
+    %         \end{tabular}
+    %     \end{center}
+    % \end{table}
 
     % \textbf{実験1}
 
@@ -223,8 +274,9 @@
     % 本研究では, 経路追従行動をカメラ画像を用いた end-to-end 学習で模倣する岡田らの従来
     % 手法をベースに, データセットと学習器の入力へ目標方向を加えることで, 経路選択をする機
     % 能の追加を提案した. また, 
-    シミュレータ上での実験を実環境に移す際に, 問題となった学習時
-    間の長さについて, 2 つのアプローチを行うことで学習時間を大幅に削減した. 加えて, 実環
+    % シミュレータ上での実験を実環境に移す際に, 問題となった学習時
+    % 間の長さについて, 2 つのアプローチを行うことで学習時間を大幅に削減した. 加えて, 
+    実環
     境での実験を行い, 有効性の検証を行った. 実験結果より, 学習器へ目標方向を与えることで,
     指定した経路へ走行する挙動が確認できた.
     
