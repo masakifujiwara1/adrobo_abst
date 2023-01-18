@@ -109,7 +109,7 @@
     \begin{center}
         \begin{figure}[h]
             \centering
-            \includegraphics[width=0.30\textwidth]{./fig/gamma3.png}
+            \includegraphics[width=0.35\textwidth]{./fig/gamma3.png}
             \caption{Experimental setup}
             \label{fig:gamma}
         \end{figure}
@@ -117,11 +117,12 @@
     \vspace{-1.0cm}
 
     \subsection{実験方法}
-    シミュレータ上で,まずは学習を10000step行い, その学習器を実環境でファインチューニングする. 学習フェーズでは, \reffig{tsudanuma}に示すようなA,Bの三叉路を全ての侵入方向と抜け出す経路を含めるように, 予め決めた経路を繰り返し走行させる. 学習を10000step実行後, テストフェーズに移行する. テストフェーズでは, 学習フェーズと同様の経路を, 目標方向による制御によって, 正しく走行できるか評価する. この一連の流れを10回行う.
+    予備実験において, 従来の手法に基づく訓練には60000step(7時間程度)必要であることが判明したため, いくつかのアプローチを追加して実験を行う. 一つは「データセットに加えるデータの割合の変更」であり, 左折・右折時のデータを7倍とする. 次に, 「学習フェーズにおける積極的な蛇行」であり, 蛇行する角度を1.5倍とする. さらに, 
+    シミュレータ上で,まずは学習を10000step行い, その学習器を実環境でファインチューニングする. 学習フェーズでは, \reffig{tsudanuma}に示すようなA,Bの三叉路で全ての侵入方向と抜け出す経路を含めるように, 予め決めた経路を繰り返し走行させる. 学習を10000step実行後, テストフェーズに移行する. テストフェーズでは, 学習フェーズと同様の経路を, 目標方向による制御によって, 正しく走行できるか評価する. この一連の流れを10回行う.
     \begin{center}
         \begin{figure}[h]
             \centering
-            \includegraphics[width=0.35\textwidth]{./fig/tsudanuma2.png}
+            \includegraphics[width=0.40\textwidth]{./fig/tsudanuma2.png}
             \caption{Experimental environment}
             \label{fig:tsudanuma}
         \end{figure}
@@ -155,27 +156,27 @@
     \vspace{-1.0cm}
 
     \subsection{実験結果}   
-    実験結果を\reffig{result1}に示す. この図は, それぞれの侵入方向に対して正しい経路を選択し, 走行できた回数を表している. 合計すると, 目標方向に従って78/120回(65\%)正しい経路を選択する様子が見られた. しかし, 成功率はシミュレータ上では90\%を超えていたことを考えると, 実環境は65\%と低かった. なお, 成功率が低い原因の解明には未だ至っていない. この問題の検討は, 今後の課題となっている.
+    実験結果を\reffig{result1}に示す. この図は, それぞれの侵入方向に対して正しい経路を選択し, 走行できた回数を表している. 合計すると, 目標方向に従って78/120回(65\%)正しい経路を選択する様子が見られた. 事前にシミュレータでの実験も行っており, その成功率は90\%を超えていたが, 実環境での成功率は65\%と低かった. なお, 成功率が低い原因の解明には未だ至っていない. この問題の検討は, 今後の課題となっている.
     \begin{center}
         \begin{figure}[h]
             \centering
-            \includegraphics[width=0.45\textwidth]{./fig/real_result.png}
+            \includegraphics[width=0.48\textwidth]{./fig/real_result.png}
             \caption{Experimental result}
             \label{fig:result1}
         \end{figure}
     \end{center}
-    \vspace{-0.9cm}
-    \reffig{result2}は, 成功回数が最多のモデルによる実験結果である. この図のb3とe3に向かう三叉路では, 経路選択前は同じ場所を走行しているため, ほぼ同様の画像が入力されているが, 目標方向に従って正しい経路を選択できている. このことから, 実環境で提案手法により, 経路選択を行うことができている可能性が高い. 
-    % \vspace{-0.2cm}
+    % \vspace{-0.9cm}
+    % \reffig{result2}は, 成功回数が最多のモデルによる実験結果である. この図のb3とe3に向かう三叉路では, 経路選択前は同じ場所を走行しているため, ほぼ同様の画像が入力されているが, 目標方向に従って正しい経路を選択できている. このことから, 実環境で提案手法により, 経路選択を行うことができている可能性が高い. 
+    % % \vspace{-0.2cm}
     
-    \begin{center}
-        \begin{figure}[h]
-            \centering
-            \includegraphics[width=0.45\textwidth]{./fig/real_model3.png}
-            \caption{Experimental result by model with the highest number of success}
-            \label{fig:result2}
-        \end{figure}
-    \end{center}
+    % \begin{center}
+    %     \begin{figure}[h]
+    %         \centering
+    %         \includegraphics[width=0.45\textwidth]{./fig/real_model3.png}
+    %         \caption{Experimental result by model with the highest number of success}
+    %         \label{fig:result2}
+    %     \end{figure}
+    % \end{center}
 
     \vspace{-1.0cm}
 
@@ -279,9 +280,10 @@
     % 能の追加を提案した. また, 
     % シミュレータ上での実験を実環境に移す際に, 問題となった学習時
     % 間の長さについて, 2 つのアプローチを行うことで学習時間を大幅に削減した. 加えて, 
-    実環
-    境での実験を行い, 有効性の検証を行った. 実験結果より, 学習器へ目標方向を与えることで,
-    指定した経路へ走行する挙動が確認できた.
+    本研究では, 経路追従行動をカメラ画像を用いた end-to-end 学習で模倣する岡田らの従来
+手法をベースに, データセットと学習器の入力へ目標方向を加えることで, 経路選択をする機
+能の追加を提案した. そして, 
+    実環境での実験を行い, 有効性の検証を行った. 実験結果より, 学習器へ目標方向を与えることで,指定した経路へ走行する挙動が確認できた.
     
     \vspace{5truemm}
     {\footnotesize
